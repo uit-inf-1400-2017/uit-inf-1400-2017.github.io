@@ -10,5 +10,5 @@ Praktisk informasjon
 * [Semesterplan](semesterplan.md)
 * [Readings](readings.md) - pensum, anbefalt litteratur og linker til nyttige ressurser. 
 
-"Timeplanen" er utenfor kontroll for kursstaben, så den må ses på som romallokering. Den faktiske kjøreplanen vil ligge i semesterplanen over.
+"Timeplanen" kan ikke oppdateres av kursstaben, så den må ses på som romallokering. Den faktiske kjøreplanen vil ligge i semesterplanen over.
 
