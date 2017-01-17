@@ -13,10 +13,10 @@ Praktisk informasjon
 "Timeplanen" kan ikke oppdateres av kursstaben, så den må ses på som romallokering. Den faktiske kjøreplanen vil ligge i semesterplanen over.
 
 
-Forelesninger:
+### Forelesninger
 - John Markus Bjørndalen
 
-Gruppelærere:
+### Gruppelærere
 - Isak Singh
 - Raymon Hansen
 - Emil Rydningen
