@@ -19,4 +19,4 @@ Forelesninger:
 Gruppelærere:
 - Isak Singh
 - Raymon Hansen
-- TBA
+- Emil Rydningen
