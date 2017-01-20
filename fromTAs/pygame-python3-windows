@@ -1,0 +1,28 @@
+For Windows:
+
+#Installer Python 3
+
+1. Klikk "Download Python 3.6.0" på
+https://www.python.org/downloads/
+
+2. Kjør python-3.6.0.exe
+3. Hak av på "Add Python 3.6 to PATH
+4. Klikk på Install Now
+
+5. Sjekk at Python 3 fungerer:
+   -Start opp Python 3.6 (32-bit) eller åpne cmd.exe og skriv python
+   -Sjekk at det står "Python 3.6.0" øverst, så er du i gang!
+
+
+
+#Installering av pygame
+
+1. Gå til:
+http://www.lfd.uci.edu/~gohlke/pythonlibs/#pygame
+Søk etter (Ctrl + F) "pygame‑1.9.2‑cp36‑cp36m‑win32.whl" og klikk på linken slik at filen lastes ned.
+
+2. Åpne cmd.exe på windows (Windows-tast + R, skriv inn "cmd" og enter)
+   -Skriv inn: "cd Downloads" (eller navigér til mappen der du har lagret filen) og enter
+   -Skriv inn: "pip3 install pygame‑1.9.2‑cp36‑cp36m‑win32.whl"
+
+3. For å teste pygame, skriv "python -m pygame.tests" i terminalen og klikk enter. Hvis alt er bra kjøres en rekke tester og "OK" printes ut til slutt. Da er du i gang med pygame!
