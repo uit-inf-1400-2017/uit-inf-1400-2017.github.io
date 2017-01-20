@@ -1,0 +1,128 @@
+\documentclass[12pt, norsk, a4paper]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{color, graphicx}
+\usepackage{graphicx, babel}
+\usepackage{url}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+% LaTeX er normalt streng når det gjelder linjebrytingen. Vi vil være litt
+% mildere, særlig fordi norsk har så mange lange, sammensatte ord
+\tolerance = 5000
+\hbadness = \tolerance
+\pretolerance = 2000
+
+% For å få avsnitt uten innrykk:
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2ex plus 0.2ex minus 0.2ex}
+\setlength\fboxsep{10pt}
+\setlength\fboxrule{0.5pt}
+
+
+
+\title{INF-1400 Introduksjon til Python}
+% \author{Øyvind Holmstad, Martin Ernstsen, Erik Bræck Leer}
+\date{16. januar, 2013}
+
+\begin{document}
+\maketitle
+
+\section*{Informasjon}
+Det er lurt å undersøke om du bruker riktig versjon av Python før du begynner,
+boka bruker Python 3, så det kan bli lettere hvis du også bruker det (selv om
+det er små forskjeller). LG-laben har Python 3 installert på Linux, men ikke
+på Windows.
+
+Hvor finner man informasjon om python? Et Google-søk på \emph{python} og navnet
+på funksjonen eller det man ønsker å gjøre er ofte det enkleste. De første
+treffene er som oftest til den offisielle dokumentasjonen på
+\url{www.python.org} (som er veldig bra). En kort tutorial til python finnes
+her: \url{http://hetland.org/writing/instant-python.html}.
+
+Oppgavene under er ment å få deg i gang med python-programmering. Gjør så mange
+som du rekker.
+
+\section{Lister og løkker}
+Oppvarming! Først, opprett ei tom fil med navnet \texttt{oppvarming.py}. Kjør
+scriptet med å skrive \texttt{python oppvarming.py} i terminalen. I fila skal du
+nå:
+
+\begin{enumerate}
+
+\item Lage ei for-løkke som går 100 ganger fra 0 til 99 og printer alle tallene
+(ved bruk av Range).
+\item Modisfisere for-løkken til å kun printe partall. 
+\item Lage ei liste med stringene “panther”, “tiger”, “leopard”, “snow leopard”,
+“windows vista”. Iterere over listen og print alle liste-elementene. 
+\item Iterere over listen og print index fulgt av liste-element (hint:
+enumerate). 
+\item Fjerne siste element i lista
+\item
+Sortere lista alfabetisk
+\end{enumerate}
+
+\section{Moduler}
+Bruk \texttt{oppvarming.py} eller lag ei ny fil om du
+vil.
+\begin{enumerate}  
+\item Importer matematikkbiblioteket (math)
+\item Bruk sinus, cosinus og/eller tangensmetoden(e).
+\item Skriv en funksjon som bruker matematikkbiblioteket til å regne ut
+kvadratroten av alle tallene fra 20 til 40, og skriver disse ut i terminalen. 
+\end{enumerate}
+
+\section{Dictionary og pass by value/reference}
+\begin{enumerate} 
+
+\item
+Definer en funksjon \texttt{make\_phonebook()} som oppretter en dictionary og
+fyller den mdn noen navn(key) og tilhørende telefonnummer(value). Funksjonen
+skal returnere dictionaryen. 
+\item Opprett en phonebook ved å kalle \texttt{make\_phonebook()}.  Iterer over
+navnene(keys) og skriv ut. 
+\item Iterer over numrene(values) og skriv ut. 
+\item Definer en funksjon \texttt{print\_phonebook(phonebook)} som tar en
+dictionary som argument, og skriver denne ut på formen ``\emph{navn} har
+telefonnummer: \emph{12345678}''
+\item Definer en funksjon \texttt{add\_ccodes(phonebook)} som tar en dictionary
+som argument og legger til 47 foran alle telefonnumrene. Du kan anta at alle telefonnumre har 8 siffer. 
+\item Kjør følgende kode. Hva skjer?  Hvorfor? 
+\begin{verbatim}
+    name_numbers = make_phonebook()
+    print_phonebook(name_numbers)
+    add_ccodes(name_numbers)
+    print_phonebook(name_numbers)
+\end{verbatim}
+\end{enumerate}
+
+\section{Klasser og metoder}
+ I denne oppgaven skal vi lage en enkel
+klasse som veldig enkelt simulerer en bankkonto. Opprett ei ny fil med navnet
+\texttt{account.py}
+
+\begin{enumerate}
+\item Lag en klasse \texttt{Account} med metodene \texttt{deposit},
+\texttt{withdrawal} og \texttt{status}. Accountklassen skal inneholde én variabel med navnet
+\texttt{value}. Ved å bruke metodene \texttt{deposit} og \texttt{withdrawal} skal du henholdsvis
+legge til og trekke fra en verdi fra \texttt{value}. \texttt{status}-metoden skal printe
+nåværende verdi av value. 
+\item Opprett ei ny fil hvor du importerer klassen du
+nettopp har laget. Opprett et Account-objekt og bruk metodene til å legge til og
+trekke fra kontoen. 
+\end{enumerate}
+
+\section{Guess a number!}
+I denne oppgaven skal vi lage et spill hvor
+datamaskinen plukker ut et tilfeldig tall mellom 0 og 100 og spilleren skal
+gjette tallet. Gjetter spilleren for høyt får han tilbakemelding om dette. På
+samme måte får spilleren vite om han har gjettet for lavt. Spillet avsluttes når
+spilleren har gjettet riktig tall.
+
+For å løse oppgaven skal du lage en klasse Guess som ved initialisering velger
+et tilfeldig tall mellom 0 og 100. Klassen skal inneholde en metode
+\texttt{guess()} som tar inn tallet spilleren gjetter på. \texttt{guess()} returner
+-1, 0, eller 1, der -1 betyr at spilleren har gjettet for høyt, 1 betyr at
+spilleren har gjettet for lavt, og 0 betyr at spilleren har gjettet riktig. Du
+kan bruke \texttt{input("...")} for å lese inn tall fra terminalen.
+
+\end{document}
