@@ -1,0 +1,112 @@
+\documentclass[12pt, norsk, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{color, graphicx}
+\usepackage{graphicx, babel}
+\usepackage{url}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+% LaTeX er normalt streng når det gjelder linjebrytingen. Vi vil være litt
+% mildere, særlig fordi norsk har så mange lange, sammensatte ord
+\tolerance = 5000
+\hbadness = \tolerance
+\pretolerance = 2000
+
+% For å få avsnitt uten innrykk:
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2ex plus 0.2ex minus 0.2ex}
+\setlength\fboxsep{10pt}
+\setlength\fboxrule{0.5pt}
+
+\title{INF-1400 Introduksjon til PyGame}
+%\author{Øyvind Holmstad, Martin Ernstsen, Erik Bræck Leer, Sigurd Eilertsen}
+\date{21. januar, 2014}
+
+\begin{document}
+\maketitle
+
+\section*{Informasjon}
+Pygame er en ``wrapper'' rundt SDL-biblioteket som ble brukt i INF-1100. Det
+betyr at dere vil kjenne dere igjen i måten man bruker pygame på. Dokumentasjon
+til pygame finnes på \url{www.pygame.org} under \emph{Documentation}. Øverst på
+siden finner dere en oversikt over alle klassene. Klikk på aktuell klasse for å
+se hvilke metoder denne har. Dere finner også brukereksempler på hvordan
+metodene brukes.
+
+Her er et minimalistisk pygame-eksempel for å få dere i gang:
+\begin{verbatim}
+import pygame
+
+class Canvas(object):
+    # A drawing canvas.
+    def __init__(self):
+        # Set up the pygame window.
+        pygame.init()
+        pygame.display.set_mode((400, 300))
+        pygame.display.set_caption("Pygame Demo")
+        self.screen = pygame.display.get_surface()
+
+    def handle_events(self):
+        # Handle all events.
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
+
+    def update(self):
+        # Change position of objects. Nothing here yet.
+        pass
+
+    def draw_scene(self):
+        # Draw a circle in the window.
+        pygame.draw.circle(self.screen, pygame.Color("yellow"), (50, 50), 30, 2)
+        pygame.display.flip()
+
+    def run(self):
+        # The main loop.
+        while 1:
+            self.handle_events()
+            self.update()
+            self.draw_scene()
+
+if __name__ == '__main__':
+    cv = Canvas()
+    cv.run()
+\end{verbatim}
+I hovedløkka tegnes en gul sirkel med sentrum i $(50, 50)$, radius 30 pixler og
+strekbredde 2 pixler.
+
+\section{Tegning}
+\begin{enumerate}
+\item Skriv et program der du tegner sirkler av forskjellig størrelse. Prøv å
+forandre alle parametre i draw-funksjonen.
+\item Bruk pygame til å tegne OL-ringene.
+\end{enumerate}
+
+\section{Animasjon}
+I denne oppgaven tar du utgangspunkt i eksempelprogrammet over.
+\begin{enumerate}
+\item Legg til to variabler i initmetoden, self.pos\_x og self.pos\_y og gi begge
+startverdi 50.
+\item Endre posisjons tuppelen i linjen som tegner sirkelen, til å 
+bruke de to nye variablene.
+\item Legg til kode i updatemetoden som endrer èn eller begge posisjonsvariablene.
+\item Endre \texttt{draw\_scene} slik at den gamle sirkelen blir visket ut
+(bruk fillmetoden til self.screen, som er en instans av pygame.Surface-klassen).
+\end{enumerate}
+
+\section{Events}
+Fortsetter med koden fra forrige oppgave.
+\begin{enumerate}
+\item Legg til 4 nye variabler i \texttt{init}: left\_pressed, right\_pressed, up\_pressed, down\_pressed.
+Initialiser disse til False.
+\item Legg til event-sjekker for om piltastene er trykket ned eller sluppet opp
+i \texttt{handle\_events}. Test etter pygame.KEYUP og pygame.KEYDOWN som event.type.
+Deretter hent ut verdiene i event.key (piltastene er pygame.K\_UP, pygame.K\_DOWN, pygame.K\_RIGHT og pygame.K\_LEFT).
+Se \url{http://pygame.org/docs/ref/event.html} for mer dokumentasjon.
+
+\item I piltast testene, gjør endring til \_pressed variablene ut ifra hvilken piltast som er trykket ned eller sluppet opp.
+
+\item I \texttt{update}, bruk \_pressed variablene til å vite hvilken piltaster er trykket ned, og gjør tilsvarende endringer til pos\_x og pos\_y.
+\end{enumerate}
+
+\end{document}
