@@ -17,6 +17,6 @@ Praktisk informasjon
 - John Markus Bjørndalen
 
 ### Gruppelærere
-- Isak Singh (A036, [isak.s.singh@uit.no](isak.s.singh@uit.no))
-- Raymon Hansen (A036, [raymon.s.hansen@uit.no](raymon.s.hansen@uit.no))
-- Emil Rydningen (A039, [ery007@post.uit.no](ery007@post.uit.no))
+- Isak Singh (A036, [isak.s.singh@uit.no](mailto:isak.s.singh@uit.no))
+- Raymon Hansen (A036, [raymon.s.hansen@uit.no](mailto:raymon.s.hansen@uit.no))
+- Emil Rydningen (A039, [ery007@post.uit.no](mailto:ery007@post.uit.no))
