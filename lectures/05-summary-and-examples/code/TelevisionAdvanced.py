@@ -86,20 +86,20 @@ if __name__ == '__main__':
   t = Television()
   t.togglePower()
   print(t)
-  print
+  print()
   
   t.setChannel(11)
   print(t)
-  print
+  print()
 
   t.jumpPrevChannel()
   print(t)
-  print
+  print()
 
   t.channelDown()
   print(t)
-  print
+  print()
 
   t.jumpPrevChannel()
   print(t)
-  print
+  print()
