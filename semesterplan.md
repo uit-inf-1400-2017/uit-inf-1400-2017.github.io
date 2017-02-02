@@ -27,8 +27,8 @@ Vi bruker forelesningstidspunktet siden grupperommene er for små.
 |     | Fr 27.01   | OO Concepts continued                   | OOP 3  (04-oo-concepts-handouts)                           |
 |   5 | Ti 31.01   | Summary and practical examples          | OOP 3                                                      |
 |     | Fr 03.02   | Programmer's toolchest                  |                                                            |
-|   6 | Ti 07.02   | Exceptions                              | OOP 4                                                      |
-|     | Fr 10.02   |                                         |                                                            |
+|   6 | Ti 07.02   | *No lecture/moved to Friday*            |                                                            |
+|     | Fr 10.02   | Exceptions                              | OOP 4                                                      |
 |   7 | Ti 14.02   | When to use Object-Oriented Programming | OOP 5                                                      |
 |     | Fr 17.02   |                                         |                                                            |
 |   8 | Ti 21.02   | *O1 inn, O2 ut*                         |                                                            |
