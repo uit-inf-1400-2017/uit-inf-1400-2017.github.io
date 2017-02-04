@@ -12,7 +12,7 @@ Praktisk informasjon
 
 "Timeplanen" kan ikke oppdateres av kursstaben, så den må ses på som romallokering. Den faktiske kjøreplanen vil ligge i semesterplanen over.
 
-Opptak av forelesningene kan dere nå via Mediasite. Linker til forelesningene ligger i [lectures/README.md](lectures/README.md].
+Opptak av forelesningene kan dere nå via Mediasite. Linker til forelesningene ligger i [lectures/README.md][lectures/README.md].
 
 
 ### Forelesninger
