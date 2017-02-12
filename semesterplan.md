@@ -44,7 +44,7 @@ Vi bruker forelesningstidspunktet siden grupperommene er for små.
 |  13 | Ti 28.03   | Event-driven programming                |                                                            |
 |     | Fr 31.03   |                                         |                                                            |
 |  14 | Ti 04.04   | *O3 inn* (kan bli flyttet)              |                                                            |
-|     | Fr 07.04   |                                         |                                                            |
+|     | Fr 07.04   |                                         | Hvis forel: flyttet til SVHUM, Aud E0101.                  |
 |  15 | Påske      | *Påske - ingen forelesning*             |                                                            |
 |  16 | Ti 18.04   |                                         |                                                            |
 |     | Fr 21.04   |                                         |                                                            |
