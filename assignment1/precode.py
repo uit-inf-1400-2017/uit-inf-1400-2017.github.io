@@ -171,13 +171,13 @@ def intersect_rectangle_circle(rec_pos, sx, sy, circle_pos, circle_radius, circl
 
         impulse = circle_speed.normalized()
 
-        if abs(left) < r and impulse.x > 0:
+        if abs(left) <= r and impulse.x > 0:
             impulse.x = -impulse.x
-        if abs(right) < r and impulse.x < 0:
+        if abs(right) <= r and impulse.x < 0:
             impulse.x = -impulse.x
-        if abs(top) < r and impulse.y > 0:
+        if abs(top) <= r and impulse.y > 0:
             impulse.y = -impulse.y
-        if abs(bottom) < r and impulse.y < 0:
+        if abs(bottom) <= r and impulse.y < 0:
             impulse.y = -impulse.y
             
         #print("Impact", circle_speed, impulse.normalized())
