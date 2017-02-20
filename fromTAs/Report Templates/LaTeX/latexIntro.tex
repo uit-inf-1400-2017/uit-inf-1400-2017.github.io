@@ -1,0 +1,545 @@
+\documentclass[a4paper,KOMA,norsk,landscape,display]{powersem}
+
+\usepackage{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+\usepackage[stmo]{ifmslide}
+%\usepackage{pstricks}
+\usepackage{verbatim}
+\usepackage{sverb}
+%\usepackage{fvrb-ex}
+\usepackage{pslatex}
+\usepackage{url}
+%\usepackage[dvips]{graphicx}
+
+\hypersetup{linkcolor=red}
+\pagestyle{empty}
+\centerslidesfalse
+
+%\panellogo{unihaken-color}
+
+
+%\usepackage{epsfig}
+
+\newcommand{\spacer}{\rule[-3mm]{0mm}{8mm}} \title{Introduksjon til \LaTeX}
+\newcommand{\heading}[1]{\begin{center}\large\bf #1\end{center}}
+\newcommand{\codeinput}[1]{{\small \verbatiminput{#1}}}
+\definecolor{url}{rgb}{.7019,.3216,.3019}
+
+
+
+\orgname{
+\begin{minipage}[t]{0.98\textwidth}
+\center
+\includegraphics[width=0.4\textwidth]{tdlogo.pdf}
+\end{minipage}
+}
+\title{\Huge Introduksjon til \LaTeX{}}
+\author{\Large Håvard D. Johansen og Kristina Kantola}
+
+
+\begin{document}
+
+\sffamily
+
+\begin{slide}
+\maketitle
+\end{slide}
+
+
+
+
+\begin{slide}
+\section*{Hva er \LaTeX{}?}
+
+\begin{itemize} 
+\item ``Typesettning'' system spesielt egnet for produksjon av
+vitenskapelige dokumenter.
+\item Skribenten spesifiserer struktur, \LaTeX{} lager layout og
+design.
+\item Basert på \TeX{} motoren av Donald~E.~Knuth fra 1982.
+\item Originalt skrevet av Leslie~Lamport og ble sist oppdatert i
+1994. 
+\end{itemize}
+\end{slide}
+
+\begin{slide}
+\section*{Hvorfor bruke \LaTeX}
+
+\begin{itemize}
+\item Er gratis!
+\item Er støttet på stort sett alt av HW/SW plattformer.
+\item Håndterer lett \emph{store} dokumenter.
+\item Dokumentene er rene tekstfiler.
+\item Profesjonelt resultat.
+\item Lar skribenten fokusere på innhold og struktur, og ikke på
+utseende.
+\end{itemize}
+%\end{slide}
+
+
+%\begin{slide}
+\subsection*{Hvorfor ikke bruke \LaTeX}
+\begin{itemize}
+\item Vanskelig å lære (?).
+\item Ingen fancy GUI.
+\item Mye å huske.
+\item Er ikke et desktop publishing program.
+\end{itemize}
+\end{slide}
+
+
+
+
+
+\begin{slide}
+\section*{Hvordan fungerer \LaTeX}
+\begin{itemize}
+\item Skriver dokumentet i en vanlig tekst editor (f.~eks xemacs):
+\begin{verbatim}
+xemacs dokument.tex
+\end{verbatim}
+\item Kjøre dokumentet gjennom \LaTeX{} programmet:
+\begin{verbatim}
+latex dokument.tex 
+\end{verbatim}
+\item Får så ut en \emph{dvi} fil som man kan:
+	\begin{itemize}
+	\item Se på ved hjelp av xdvi: \verb|xdvi dokument.dvi|
+	\item Skrive ut: \verb|dvips dokument.dvi|
+	\item Konvertere til pdf: \verb|dvipdf dokument.dvi|
+	\item osv...
+	\end{itemize}
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}
+\section*{Struktur til et dokument}
+\begin{itemize}
+\item Litt likt HTML.
+\item Innholder tekst og kommandoer/tagger for å spesifisere struktur.
+\item Eksempel:
+\end{itemize}
+
+\codeinput{demo.tex}
+\end{slide}
+
+
+
+
+
+\begin{slide}
+\section*{Strukturerings elementer}
+\begin{itemize}
+
+\item Kommandoer
+	\begin{itemize}
+	\item Har formen \verb|\command[opt]{text}|.
+	\end{itemize}
+
+\item Environment/Miljø
+	\begin{itemize}
+	\item Begynner med \verb|\begin{navn}|.
+	\item Slutter med \verb|\end{navn}|.
+	\item Tekst i et miljø har spesielle egenskaper.
+	\item Definerer spesielle kommandoer.
+	\end{itemize}
+
+\item Dokument klasse \verb|\documentclass[opts]{klasse}|
+	\begin{itemize}
+	\item Spesifiserer type dokument du ønsker å skrive. For eksempel en artikkel (article), en book (book), en raport (report), et brev (letter), osv.
+	\end{itemize}
+\item Finnes et utall kommandoer og miljøer, her presenteres bare et
+lite utvalg. 
+\item Man kan lett lage sine egne kommandoer og miljøer.
+\end{itemize}
+\end{slide}
+
+
+
+\begin{slide}
+
+\section*{Dokument hode (preamble)}
+
+\begin{itemize}
+
+\item Alle dokumentene begynner med et dokument hode.
+	\begin{itemize} \item Spesifiserer dokument typen.
+
+	\item Funksjonalitetspakker som man vil benytte seg av.
+
+	\item Spesielle kommandoer for a spesifisere tittel, forfatter, osv...
+	\end{itemize}
+\item Eksempel:
+\end{itemize}
+
+\codeinput{demo.tex.hode}
+
+\end{slide}
+
+
+
+
+\begin{slide}
+
+\section*{Dokument kropp}
+
+\begin{itemize}
+\item Hvor selve dokumentet skrives.
+
+\item Begynner med \verb|\begin{document}|
+\item Slutter med \verb|\end{document}|
+
+\item Inneholder ellers:
+
+	\begin{itemize}
+	\item Tekst, bilder, osv...
+	\item Strukturerings kommandoer. 
+	\end{itemize}
+
+
+\item Eksempel:
+\end{itemize}
+\codeinput{demo.tex.kropp}
+
+\end{slide}
+
+
+
+\begin{slide}
+\section*{Å skrive med \LaTeX}
+
+Å skrive \LaTeX tekst foregår litt forskjellig i forhold til
+tekstbehandlings programmer:
+
+\begin{itemize}
+
+\item Tabulator, mellomrom og linjeskift ignoreres:
+{\small
+\begin{demo}{Eksempel}
+\LaTeX is a document
+     preparation 
+system       designed  by Leslie 
+Lamport      in  1985.
+\end{demo}
+}
+
+\item To linjeskift gir angir start på en ny paragraf.
+
+\item Har 10 spesialtegn som ikke kan brukes direkte i teksten, disse
+er:
+
+{ \small
+\begin{demo}{Spesialtegn}
+$\backslash$  $\sim$  \# \$ 
+ \%  \&  \_  \{  \}  $\hat{}$
+\end{demo}
+}
+\end{itemize}
+
+
+\end{slide}
+
+
+\begin{slide}
+\section*{Å skrive med \LaTeX}
+
+\begin{itemize}
+
+\item Siteringstegn er ikke \verb|"| , men man bruker doble \verb|`| og \verb|'| tegn. Altså
+ikke {\center{ {\huge \verb|"sitat"|}, men  {\huge  ``\verb|sitat|'' }}}.
+
+\item Alt etter et \% tegn behandles som kommentarer og vises ikke i
+dokumentet. 
+{\small
+\begin{demo}{Eksempel}
+  Dette er vanlig tekst\\
+  % Dette er en kommentar
+  Men % alt dette vises ikke.
+  vises dette? 
+
+\end{demo}
+}
+
+\end{itemize}
+
+\end{slide}
+
+
+
+
+
+
+
+
+
+
+\begin{slide}
+\section*{Seksjonerings kommandoer}
+\begin{itemize}
+\item Lager overskrifter på forskjellig nivå
+	\begin{list}{}{}
+	\item \verb|\part{}|
+	\item \verb|\chapter{}| 
+	\item \verb|\section{}|
+	\item \verb|\subsection{}|
+	\item \verb|\subsubsection{}|  
+	\item \verb|\paragraph{}|
+	\item \verb|\subparagraph{}|
+	\end{list}
+\item Kommandoen \verb|\section{Hei å hå!}| lager en overskrift med teksten
+``Hei å hå!''.
+\item Seksjonene er nummererte. Man kan få unummererte seksjoner ved å
+bruke * etter seksjonskommandoen. F.eks \verb|\section*{hei å hå!}|
+
+\end{itemize}
+
+\end{slide}
+
+
+\begin{slide}
+\section*{Opplistingsmiljøer}
+\vspace{-0.2cm}
+{\small
+\begin{demo}{\bf Itemize}
+  \begin{itemize}
+  \item En blå bil.
+  \item En gul bil.
+  \end{itemize}
+\end{demo}
+}\vspace{-0.5cm}
+{\small
+\begin{demo}{\bf Enumerate}
+  \begin{enumerate}
+  \item En blå bil.
+  \item En gul bil.
+  \end{enumerate}
+\end{demo}
+}\vspace{-0.5cm}
+{\small
+\begin{demo}{\bf Description}
+  \begin{description}
+  \item[Bil] En blå bil.
+  \item[Bil2] En gul bil.
+  \end{description}
+\end{demo}
+}
+\end{slide}
+
+
+
+\begin{slide}
+\section{Opplistingsmiljøer}
+{\small
+\begin{demo}[n]{Nøsting og kombinering}
+\begin{description}
+ \item[Bil] kan ha forskjellig farge 
+  \begin{enumerate}
+    \item blå
+    \item gul
+      \begin{itemize}
+      \item blågul
+      \item lysegul
+    \end{itemize}
+  \end{enumerate}
+  \item[Båt] En båt liste 
+\end{description}
+\end{demo}
+}
+\end{slide}
+
+
+\begin{slide}
+\section*{Verbatim}
+\begin{itemize}
+\item Inkluderer tekst akkurat som den er skrevet.
+\item \verb|\begin{verbatim} ... \end{verbatim}| for tekst som går
+over flere linjer.
+\item \verb§\verb|tekst|§ for ord.
+
+\item \verb|\verbatiminput{fil}| for å inkludere en hel fil.
+\end{itemize}
+{\small
+\begin{demo}{Eksempel}
+\begin{verbatim}
+for (i=0; i<10; i++){
+   j = j + 1;
+}
+\end{verbatim}
+\end{demo}
+}
+\end{slide}
+
+
+
+\begin{slide}
+\section*{Skrifttyper}
+\begin{itemize}
+\item \verb|\emph{tekst}| uthever \emph{tekst}.
+\item \verb|{\bf tekst}| lager fet {\bf tekst}.
+\item \verb|{\it tekst}| lager italic {\it tekst}. 
+
+\item kan også endre skriftstørrelsen
+\end{itemize}
+\begin{demo}{Eksempel}
+\tiny tiny
+\small small
+\normalsize normalsize
+\large large
+\Large Large
+\huge huge
+\Huge Huge
+\end{demo}
+
+\end{slide}
+
+
+
+
+
+\begin{slide}
+\section*{Matematiske formler }
+
+Startes med:
+\begin{itemize}
+\item \verb|$...$|
+\item \verb|\begin{euqation}...\end{equation}|
+\end{itemize}
+
+
+{\small
+\begin{demo}{Eksempel}
+\begin{equation}
+\sum_{k\geq 0} z^n
+\left ( \sum_{{k_0,k_1,\ldots\geq 0}
+	\atop{k_0+k_1+\ldots=n}		}
+	a{_0k_0}a_{1k_1}\ldots	\right)
+\end{equation}
+\end{demo}
+}
+\end{slide}
+
+
+
+
+
+\begin{slide}
+\section*{Tabeller}
+
+
+\begin{itemize}
+
+
+\item \verb|\begin{tabular}{def}...\end{tabular}|
+\item def spesifiserer kollonne oppsett
+\item \verb|&| skiller kollonnene 
+\end{itemize}
+
+{\small
+\begin{demo}{Eksempel}
+\begin{tabular}{|c|c|}
+\hline 
+dag     & temp  \\ \hline
+onsdag  & 1     \\ \hline
+torsdag & -1    \\ \hline
+\end{tabular}
+\end{demo}
+}
+\end{slide}
+
+
+\begin{slide}
+\section*{Figurer og floats}
+\begin{itemize}
+\item Tabeller og figurer lar man gjerne flyte i teksten.
+	\begin{itemize}
+	\item \verb|\begin{figure} ... \end{figure}| for figurer
+	\item \verb|\begin{table} ... \end{table}| for tabeller.
+	\end{itemize}
+\item \verb|\caption{...}| lager ``billedtekst'' til floaten.
+\item Lager referanse i teksten (feks. ``dette er vist i Figur 1.''). 
+	\begin{itemize}
+	\item \verb|\label{ns:tekst}| lager en referanse til floaten (ns er navnerom).
+	\item \verb|\ref{ns:tekst}| refererer til floaten
+	\end{itemize}
+\end{itemize}
+%
+{\small
+\begin{demo}{Eksempel}
+\begin{figure}
+\includegraphics[width=5cm]{tdlogo}
+\caption{TD sin logo}
+\label{fig:tdlogo}
+\end{figure}
+... se Figur \ref{fig:tdlogo}. 
+\end{demo}
+}
+\end{slide}
+
+
+
+
+
+
+
+
+\begin{slide}
+\section*{Andre ting}
+\begin{itemize}
+
+\item Innholdsfortegnelse: \verb|\tableofcontents|
+\item Fotnoter: \verb|\footnote{}|
+\item Bryting av linjer \verb|\\| eller \verb|\newline|
+\item Bibliografi lister: \verb|\cite{SRDS01}|
+\item Streker og prikker
+\begin{demo}{Eksempel}
+daughter-in-law, X-rated\\
+pages 13--76\\
+yes---or no?\\
+$0$, $1$, and $-1$\\
+Ikke slik ... men slik: 
+Per, Ole, \ldots
+\end{demo}
+\end{itemize}
+\end{slide}
+
+
+
+
+\begin{slide}
+\section*{Dokumentasjon}
+
+\begin{itemize}
+\item Disse slidene + annet kursmateriale ligger på {\url{http://www.td.org.uit.no/brukerkurs/latex/}}
+
+\item The Not So Short Introduction to \LaTeX
+	\begin{itemize}
+	\item  {\url{/usr/share/texmf/doc/latex/general/lshort.dvi}}
+	\item  {\url{http://ctan.tug.org/tex-archive/info/lshort/english/lshort.pdf}}	
+	\end{itemize}
+
+\item \LaTeX{} Project Home page
+	\begin{itemize}
+	\item { \url{http://www.latex-project.org/}}
+	\end{itemize}
+
+\item Distribusjoner
+	\begin{description}
+	\item [teTex (Linux/Unix)] {\url{http://www.tug.org/teTeX/}}
+	\item [MiKTeX (Windows)] {\url{http://www.miktex.org/}} 
+	\end{description}
+
+\end{itemize}
+
+\end{slide}
+
+\end{document}
+
+
+% Local Variables: 
+% fill-column: 120
+% TeX-master: t
+% End: 

@@ -1,0 +1,8 @@
+\documentclass[10pt, norsk, a4paper]{article}
+\usepackage{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[dvips]{graphicx}
+
+\title{Et basis dokument}
+\author{Håvard Johansen}

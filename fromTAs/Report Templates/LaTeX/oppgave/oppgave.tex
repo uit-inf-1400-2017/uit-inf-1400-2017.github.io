@@ -1,0 +1,34 @@
+\documentclass[10pt, norsk, a4paper]{article}
+\usepackage{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[dvips]{graphicx}
+\usepackage{parskip}
+\usepackage{pslatex}
+\title{Øvningsoppgave i \LaTeX{}}
+\author{}
+
+\begin{document}
+\maketitle
+
+Ta råfilen \verb|tekst.txt| og strukturere den med latex kommandoer
+(filene ligger i oppgavekatalogen på kursets hjemmeside). Lagre den
+som \verb|tekst.tex| på maskinen du sitter på.
+
+Ting som kan kjøres i \verb|tekst.tex|:
+\begin{itemize}
+\item Legg til latex header og document kommandoer.
+\item linje 1 og 2 er tittel. Bruk \verb|\title{}|
+\item Lag en forfatter. Bruk \verb|\author{}|
+\item Linje 5, 32, 67 er seksjoner. Bruk \verb|\section{}|
+\item Linje 7, 14 er subsekjoner.
+\item Linje 50--59 er en listing. Bruk enumerate miljøet.
+\item Linje 85--93 er et vers. Bruk verse miljøet (hust å ende hver linje med \verb|\\|).
+\item Det er brukt \verb|"| siteringstegn diverse plasser i
+      teksten. Disse bør byttes ut.
+\item Eller er det bare å teste ut div kommandoer. Ta en titt i dokumentasjonen som ligger på maskinen din:
+\begin{verbatim}
+xdvi /usr/share/texmf/doc/latex/general/lshort.dvi
+\end{verbatim}
+\end{itemize}
+\end{document}
