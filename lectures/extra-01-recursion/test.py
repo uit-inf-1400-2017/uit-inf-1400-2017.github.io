@@ -1,10 +1,56 @@
 #!/usr/bin/env python3
-"""
-Code that we used to develop the idea of recursion. 
+"""Code that we used to develop the idea of recursion. 
+
+The key point to remember is that a function is free to call any
+function to help solve its problems, including itself.
+
+To understand how this works, you need to understand how a function
+call is normally done. We explained that during the lecture, but the
+key points are (slightly simplified):
+ 
+a) when we call another function, we push the point we are at currently to
+   the stack (as the return address) as well as any parameters we want to 
+   send to the called function
+b) a function call is simply
+   - a jump to the starting point of another function
+   - paramaters on the stack appear as local variables in the function
+   - local variables in the function are "pushed on the stack" (actually, 
+     room is made for them) and used from the stack
+   - when the function returns, it pops the values it no longer needs from 
+     the stack, then it pops the return address and jump to that. 
+
+We have ignored return values, but they can be handled in a similar
+fashion to parameters.
+   
+Since you create a new set of variables, parameters etc on the stack
+when you call a function, it's easy to see that recursive calls can
+function without overwriting the variables in the previous calls as
+each call builds on top of the others in the stack:
+
+  [ call 2 with local vars etc.]
+  [ call 1 with local vars etc.]
+  [ call 0 with local vars etc.]
+
+The difference from a loop is that in a loop like this: 
+    def foo(): 
+        ...
+        doesn't call any functions.
+        ... 
+
+    for i in range(10):
+        foo()
+
+we only need one level in the stack as we repeatedly (every time we
+call foo()) build up the variables and then tear them down again every
+time we return from the function:
+
+   [call to foo ]
+
 """
 
 
 def functracer1(func):
+    """Standard decorator function. We can use this to trace function calls (as we saw in oop-07)."""
     def wrapper(*args, **kwargs):
         print("Entering {} with args {} kwargs {}".format(func.__name__, args, kwargs))
         ret = func(*args, **kwargs)
@@ -13,7 +59,8 @@ def functracer1(func):
     return wrapper
 
 class functracer2:
-    """Similar to functracer1, but this one keeps track of call levels for recursive functions"""
+    """Similar to functracer1, but this one keeps track of call levels for recursive functions. This can be useful 
+    for examining how recursive functions work. """
     def __init__(self, func):
         self.func = func
         self.level = 0
@@ -32,7 +79,11 @@ class functracer2:
             self.ncalls = 0
         return ret
 
-
+########
+#
+# First recursive examples using decorators. We're recursively creating a list of numbers. 
+# 
+    
 @functracer2
 def rec_list_maker(i, maxval):
     """Returns a list of values between i and maxval"""
@@ -44,6 +95,7 @@ def rec_list_maker(i, maxval):
     return newlist
 
 def test_rec_list_maker():
+    """A couple of calls to rec_list_maker demonstration the function and the tracing"""
     print("Test 1 of rec_list_maker")
     rec_list_maker(3, 5)
     print("Test 2 of rec_list_maker")
@@ -51,6 +103,10 @@ def test_rec_list_maker():
 #test_rec_list_maker()
 
 
+########
+#
+# Three variations on parsing a simple graph
+# 
 def rec_graph_parse1(graph, verbose=True):
     "process items at this level in order" 
     for item in graph:
@@ -87,14 +143,21 @@ def rec_graph_parse3(graph, verbose=True):
 simple_graph = [1,2,[3,[4,5],[6,[7]],8],9]
 
 def test_rec():
-    # We should kahoot this. 
+    # We should kahoot this.
+    # Try to predict how each function would go through the graph/tree. 
     for fn in [rec_graph_parse1, rec_graph_parse2, rec_graph_parse3]:
         print("--------------------------")
         print("Recursive graph parsing with", fn.__name__)
         fn(simple_graph)
 test_rec()
 
-    
+
+
+########
+#
+# Using the tracing decorator. 
+# 
+
 @functracer2
 def traced_graph_parser(graph, verbose=True):
     for item in graph:
@@ -113,6 +176,10 @@ def test_trace_rec():
 test_trace_rec()
 
 
+########
+#
+# Recursive fibonacci using the tracing decorator. 
+# 
 
 @functracer2
 def fibonacci(n):
