@@ -36,9 +36,9 @@ Vi bruker forelesningstidspunktet siden grupperommene er for små.
 |   9 | Ti 28.02   | Python Data Structures                  | OOP 6                                                      |
 |     | Fr 03.03   |                                         |                                                            |
 |  10 | Ti 07.03   | Python Design Patterns I                | OOP 7, 8                                                   |
-|     | Fr 10.03   | Python Design Patterns II               | OOP 9                                                      |
+|     | Fr 10.03   | Extra lecture on recursion              | extra lecture 01                                           |
 |  11 | Ti 14.03   | *O2 inn, O3 ut*                         |                                                            |
-|     | Fr 17.03   |                                         | Hvis forelesning: flyttet til SVHUM, Aud B 1005            |
+|     | Fr 17.03   | Python Design Patterns II               | OOP 8,9   NB: Rom flyttet til SVHUM, Aud B 1005            |
 |  12 | Ti 21.03   | Testing Object-Oriented Programs        | OOP 11                                                     |
 |     | Fr 24.03   |                                         |                                                            |
 |  13 | Ti 28.03   | Event-driven programming                |                                                            |
