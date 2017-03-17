@@ -1,345 +1,84 @@
-Ch 8 -- Python Design Patterns I
-=================================
+Ch 9 -- Python Design Patterns II
+================================
 
-Classical reference to design patterns is the "Gang of Four" book by Gamma, Helm, Johnson and Vlissides (reference to the book in the Wikipedia article : http://en.wikipedia.org/wiki/Design_Patterns)
+Last time, we discussed Python introducing direct language support for some patterns (such as decorators). 
 
-Part of the motivation behind patterns is to identify software/code design patterns that people often use and describe and name them such that they can be easily re-used by other programmers without having to re-invent solutions for known problems. Understanding patterns can also make it easier to understand code that others have written. 
+Consider: Java generics. 
 
-The original patterns book (focused on C++) describes many patterns that are not relevant for Python or similar high-level languages. Enforcing such patterns in dynamic languages can lead to needlessly convoluted programs. 
-
-Many takes on this. A couple:
-- http://www.aleax.it/Python/5ep.html
-- http://norvig.com/design-patterns/design-patterns.pdf
-
-The focus here is not to dive into these, just to make you aware of them. The relevant patterns for your exam will be the ones in the main book. 
-
-One view on patterns is that the existence of a pattern _may_ be an indication of a weakness in a programming language.
-
-The decorator pattern below is an example where, in Python, a pattern has been added as a built-in mechanism that serves to both simplify the work for the programmer and to document that you are using the pattern. 
-
-
-Decorator pattern
------------------
-
-A decorator "wraps" a modifier around another object. If you decorate a function, you force others to call the function through a wrapper.
-
-One (slightly modified) example from the book. Functions are objects, and function names are variables that point to the functions. This means that we can re-assign the variable using wrapper functions: 
-
-```python
-import time
-
-def log_calls(func):
-    def wrapper(*args, **kwargs):
-        now = time.time()
-        print("Calling {0} with {1} and {2}".format(func.__name__, args, kwargs))
-        return_value = func(*args, **kwargs)
-        print("Executed {0} in {1}s".format(func.__name__, time.time() - now))
-        return return_value
-    return wrapper
-
-def test1(a,b,c):
-    print("\ttest1 called")
-def test2(a,b):
-    print("\ttest2 called")
-def test3(a,b):
-    print("\ttest3 called")
-    time.sleep(1) 
-
-@log_calls
-def test4(a,b):
-    print("\ttest4 called")
-    time.sleep(1) 
-
-test1 = log_calls(test1)
-test2 = log_calls(test2)
-test3 = log_calls(test3)
-
-test1(1,2,3)
-test2(4,b=5)
-test3(6,7)
-
-test4(1,2)
-```
-
-Running the program:
-```
-
-Calling test1 with (1, 2, 3) and {}
-	test1 called
-Executed test1 in 0.00011110305786132812s
-Calling test2 with (4,) and {'b': 5}
-	test2 called
-Executed test2 in 6.628036499023438e-05s
-Calling test3 with (6, 7) and {}
-	test3 called
-Executed test3 in 1.0031397342681885s
-Calling test4 with (1, 2) and {}
-	test4 called
-Executed test4 in 1.0051391124725342s
-```
-
-Every time `log_calls` is called, it creates a new `wrapper` that keeps a reference to the passed `func`. The wrapper function is returned by log_calls, so we basically assign this to test1 (etc), wrapping around the original function.
-
-`test4` is wrapped in the same way as `test1-test3`, but it uses the "decorator" syntax in Python to do so. Usign this syntax documents that we are actually using a decorator to modify or wrap the function.
-
-
-### Decorator classes
-
-Decorators can also be created using callable classes instead of functions. See for example:  http://python-3-patterns-idioms-test.readthedocs.org/en/latest/PythonDecorators.html  (the example below is from that site). 
-
-```
-# PythonDecorators/entry_exit_class.py
-class entry_exit(object):
-
-    def __init__(self, f):
-        self.f = f
-
-    def __call__(self):
-        print("Entering", self.f.__name__)
-        self.f()
-        print("Exited", self.f.__name__)
-
-@entry_exit
-def func1():
-    print("inside func1()")
-
-@entry_exit
-def func2():
-    print("inside func2()")
-```
-
-### Some decorator examples from functools 
-
-You can find many decorators in the standard Python library, and many programs will use them. One example is the `lru_cache` (least recently used cache) from the functools module: 
-https://docs.python.org/3/library/functools.html
-
-```python
-from functools import lru_cache
-
-@lru_cache(maxsize=32)
-def get_pep(num):
-    'Retrieve text of a Python Enhancement Proposal'
-    resource = 'http://www.python.org/dev/peps/pep-%04d/' % num
-    try:
-        with urllib.request.urlopen(resource) as s:
-            return s.read()
-    except urllib.error.HTTPError:
-        return 'Not Found'
-
->>> for n in 8, 290, 308, 320, 8, 218, 320, 279, 289, 320, 9991:
-...     pep = get_pep(n)
-...     print(n, len(pep))
-
->>> get_pep.cache_info()
-CacheInfo(hits=3, misses=8, maxsize=32, currsize=8)
-```
-
-```
-@lru_cache(maxsize=None)
-def fib(n):
-    if n < 2:
-        return n
-    return fib(n-1) + fib(n-2)
-
->>> [fib(n) for n in range(16)]
-[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]
-
->>> fib.cache_info()
-CacheInfo(hits=28, misses=16, maxsize=None, currsize=16)
-```
-
-The functools module also has a decorator that can be used to implement single-dispatch generic functions, similar to method overloading in many other languages: 
-
-```python
-from functools import singledispatch
-
-@singledispatch
-def fun(arg, verbose=False):
-    if verbose:
-        print("Let me just say,", end=" ")
-    print(arg)
-
-@fun.register(int)
-def _(arg, verbose=False):
-    if verbose:
-        print("Strength in numbers, eh?", end=" ")
-    print(arg)
-   
-@fun.register(list)
-def _(arg, verbose=False):
-    if verbose:
-       print("Enumerate this:")
-    for i, elem in enumerate(arg):
-       print(i, elem)
-
->>> fun(42)
-42
->>> fun(42, verbose=True)
-Strength in numbers, eh? 42
->>> fun([2,3,4], verbose=True)
-Enumerate this:
-0 2
-1 3
-2 4
-```
-
-
-Observer pattern
------------------
-
-A single core object being monitored by a (dynamic) set of observer objects.
-
-Slightly modified example (attach has been moved inside the observer object as this reduces the risk of attaching to the wrong object):
-
-```python
-class Inventory:
-    def __init__(self):
-        self.observers = []
-        self._product = None
-        self._quantity = 0
-
-    def attach(self, observer):
-        self.observers.append(observer)
-
-    @property
-    def product(self):
-        return self._product
-
-    @product.setter
-    def product(self, value):
-        self._product = value
-        self._update_observers()
-
-    @property
-    def quantity(self):
-        return self._quantity
-
-    @quantity.setter
-    def quantity(self, value):
-        self._quantity = value
-        self._update_observers()
-
-    def _update_observers(self):
-        for observer in self.observers:
-            observer()
-
-
-class ConsoleObserver:
-    def __init__(self, inventory):
-        self.inventory = inventory
-        self.inventory.attach(self)
-    def __call__(self):
-        print(self.inventory.product)
-        print(self.inventory.quantity)
-
->>> i = Inventory()
->>> c = ConsoleObserver(i)
->>> i.product = "Widget" 
-Widget
-0
->>> i.quantity = 5
-Widget
-5
->>> c2 = ConsoleObserver(i)
->>> i.product="Gadget"
-Gadget
-5
-Gadget
-5
->>>
-```
-
-Real-life example, can we spot the pattern here?:
-https://github.com/tornadoweb/tornado/blob/master/demos/websocket/chatdemo.py
-
-
-Strategy pattern
+Adapter pattern
 ----------------
 
-Implements different solutions to a single problem. The solutions can be selected or changed at run-time based needs in the program.
+Motivations include:
+- existing code where interfaces don't fit and where we cannot easily modify one or both ends.
+- provide a common interface to similar classes (example: libraries that provide similar but not identical interfaces)
 
-Example 1: different sorting algorithms that optimize for memory use, speed, particular properties in the list (nearly-sorted sequence etc).
 
-Many languages, such as Java, have to implement this using classes that inherit a common interface and implement a particular method.
+Adapter, basic use:  wraps around an object so that it can be used by other objects that expect a different interface. 
 
-```python
-class sorter1(SorterStrategy):
-    ...
-    def sort(self, sequence):
-        ...
-class sorter2(SorterStrategy):
-    ...
-    def sort(self, sequence):
-        ...
-class sorter3(SorterStrategy):
-    ...
-    def sort(self, sequence):
-        ...
-```
+Book code 1: `DateAgeAdapter` wraps around `AgeCalculator` to allow other date specifications (using `datetime.date` or `datetime.time` objects to specify the date) to be used as `AgeCalculator` only supports dates specified by a string of the format "YYYY-MM-DD". 
 
-You can, of course, do this in Python as well, but languages with first-class functions (functions are objects) allow you to implement the strategy pattern using functions without having to add extra class scaffolding:
+Book code 2: The origial `AgeCalculator` objects use `split`. We can also adapt the other way by subclassing `datetime.date` and provide a compatible `split` method on date objects. 
 
-```python
-def sorter1(sequence):
-    ...
-def sorter2(sequence):
-    ...
-def sorter3(sequence):
-    ...
-```
+Caution: This only works if the code using the adapted class doesn't change. AgeCalculator could, for instance, do extra checks on the string before trying to parse it, in which case the second adapter would fail. 
 
-State pattern
--------------
+Facade pattern
+--------------
 
-Wikipedia has a simpler example: 
+Similar to Adapter, but tries to simplify a complex interface. Optimizes for a typical or specific usage. 
 
-http://en.wikipedia.org/wiki/State_pattern
-
-Similar mechanisms to Strategy pattern. 
-
-Singleton pattern
+Flyweight pattern
 -----------------
 
-One of the "anti-patterns". You're probably doing something wrong if you use it in Python, but some other languages still need it.
+Memory optimization pattern (beware of premature optimizations). 
 
-Idea: allow exactly one instance of a certain object to exist.
+Basic idea: many similar objects can share attributes/objects for features that are the same between the object. 
 
-Ways of creating a singleton:
+One way of implementing: using factory methods that create them when needed, or re-use objects when they already exist (similar to singleton).
 
-1. Make a constructor private and make a static / class method to retrieve a reference to the single object.
-2. Make a class method for the singleton object. Any other instanced object forwards method calls to that single object. 
-3. Override `__new__` (in Python) or similar method to return reference to the singleton object
+Another way: use `__new__` and `weakref`. 
 
-Example from the book on method 3: 
-```python 
-class OneOnly:
-   _singleton = None
-   def __new__(cls, *args, **kwargs):
-      if not cls._singleton:
-         cls._singleton = super(OneOnly, cls).__new__(cls, *args, **kwargs)
-   return cls._singleton
+
+Command pattern
+---------------
+
+Basic idea: client code submits code (through a `Command` object) that can later be executed by one or more `Invoker` objects. 
+
+The book demonstrates two ways of implementing this in a menu system:
+- A pattern that uses specific method names in objects for specific tasks. This uses three classes of objects and will easily introduce several classes for every action we want to implement.
+- A pattern that uses function or method references to implement actions, and requires less class scaffolding. 
+
+The latter (method references) uses a feature in Python where methods are bound to particular objects when you reference them from the object:
+
+```python
+# this 
+a = obj.method
+a()
+# is equivalent to
+obj.method()
+# or
+o = obj
+o.method()
 ```
 
-Alternatives:
+Python threads are provided in a similar fashion, but a closer equivalent to the command pattern is the concurrent library with executors and futures:
 
-1. Use a global variable (a singleton _is_ a global variable)
-2. Use a module variable (put the global variable in the right context)
+https://docs.python.org/dev/library/concurrent.futures.html
 
+Abstract factory pattern
+------------------------
 
+Basic idea: a factory that selects the right implementation (based on configuration options, state of the program or other factors) and returns an instance of the selected class. The caller shouldn't need to know which class was actually instanced.
 
-Template pattern
-----------------
+Examples: database implementations, date formatters, compression algorithms.
 
-Intended to support the DRY (Don't Repeat Yourself) principle. 
-
-Somewhat similar to a strategy pattern, but similar code is shared using a base class. 
-
-General idea:
-- implement basic structure and shared code in the base class
-- implement/override specific steps in child classes
-
-A modified example from the book is included [here](template_example.py).
-
-NB: remember this example when you get to get database course ;-)
+Book: the right factory is selected based on country code. Could use singleton, but used module variable instead. 
 
 
+Composite pattern
+-----------------
+
+Basic idea: build complex tree-like structures using simple container objects that hold other composite objects. 
+
+Book example: file system folders.
+
+Other typical example: scene graph libraries organize graphics in a hierarchical graph. 
