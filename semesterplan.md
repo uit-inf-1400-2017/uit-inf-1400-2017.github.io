@@ -49,7 +49,7 @@ Vi bruker forelesningstidspunktet siden grupperommene er for små.
 |  16 | Ti 18.04   |                                         |                                                            |
 |     | Fr 21.04   |                                         |                                                            |
 |  17 | Ti 25.04   | Class-based vs. classless OOP           | (ex: C++, Java, JavaScript, Self)                          |
-|     | Fr 28.04   |                                         |                                                            |
+|     | Fr 28.04   |                                         | (NB: Rombytte -> SVHUM, Aud B1005 hvis forel)              |
 |  18 | Ti 02.05   | Context managers, stop writing classes. | [See notes](lectures/14-misc.md) (coming later)            |
 |     | Fr 05.05   |                                         |                                                            |
 |  19 | Ti 09.05   | Summary, exam prep                      |                                                            |
