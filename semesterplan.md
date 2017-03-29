@@ -54,7 +54,7 @@ Vi bruker forelesningstidspunktet siden grupperommene er for små.
 |     | Fr 05.05   |                                         |                                                            |
 |  19 | Ti 09.05   | Summary, exam prep                      |                                                            |
 |     | Fr 12.05   |                                         |                                                            |
-|  20 | Ti 16.05   | No lecture planned                      |                                                            |
+|  20 | Ti 16.05   | No lecture (inf-1101 exam)              |                                                            |
 |     | Fr 19.05   |                                         |                                                            |
 |  20 | Ti 23.05   | Eksamen (tentativ)                      | NB: denne *kan* bli flyttet uten at det blir oppdatert her |
 
