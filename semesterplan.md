@@ -52,7 +52,7 @@ Vi bruker forelesningstidspunktet siden grupperommene er for små.
 |     | Fr 28.04   | Class-based vs. classless OOP           | (ex: C++, JavaScript, Java, Self..)                        |
 |     |            |                                         | (NB: Rombytte -> SVHUM, Aud B1005)                         |
 |  18 | Ti 02.05   | Context managers, stop writing classes. | [See notes](lectures/14-misc.md) (coming later)            |
-|     | Fr 05.05   |                                         |                                                            |
+|     | Fr 05.05   |                                         | (NB: Rombytte -> SVHUM, Aud B1005)                         |
 |  19 | Ti 09.05   | Summary, exam prep                      |                                                            |
 |     | Fr 12.05   |                                         |                                                            |
 |  20 | Ti 16.05   | No lecture (inf-1101 exam)              | (NB: room not available)                                   |
