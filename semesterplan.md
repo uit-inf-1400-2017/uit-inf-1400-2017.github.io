@@ -54,7 +54,7 @@ Vi bruker forelesningstidspunktet siden grupperommene er for små.
 |  18 | Ti 02.05   | Context managers, stop writing classes. | [See notes](lectures/14-misc.md) (coming later)            |
 |     | Fr 05.05   |                                         | (NB: Rombytte -> SVHUM, Aud B1005)                         |
 |  19 | Ti 09.05   | Summary, exam prep                      |                                                            |
-|     | Fr 12.05   |                                         |                                                            |
+|     | Fr 12.05   |                                         | (NB; Rombytte -> SVHUM, Aud B1005)                         |
 |  20 | Ti 16.05   | No lecture (inf-1101 exam)              | (NB: room not available)                                   |
 |     | Fr 19.05   |                                         |                                                            |
 |  20 | Ti 23.05   | Eksamen (tentativ)                      | NB: denne *kan* bli flyttet uten at det blir oppdatert her |
