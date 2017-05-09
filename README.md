@@ -5,7 +5,7 @@ INF-1400 Objektorientert programmering - Våren 2017
 Praktisk informasjon
 --------------
 
-* [Kursinfo på uit.no](http://uit.no/studiekatalog/emner/2017/var/inf-1400-1)
+* [Kursinfo på uit.no](http://uit.no/studiekatalog/emner/2017/var/inf-1400-1). Mulig ny link [her](https://uit.no/utdanning/emner/emne/481176/inf-1400). 
 * [Time/Romoversikt](http://timeplan.uit.no/emne_timeplan.php?year=2017&module[]=INF-1400-1#week-1)
 * [Semesterplan](semesterplan.md)
 * [Readings](readings.md) - pensum, anbefalt litteratur og linker til nyttige ressurser.
